@@ -51,7 +51,7 @@ describe('Login', () => {
                 password
             }
             when(axios.post)
-                .calledWith(`${BASE_URL}authentication/login`, body)
+                .calledWith(`${BASE_URL}/authentication/login`, body)
                 .mockResolvedValue(mockResponse);
 
             fireEvent.change(screen.queryByTestId("i-username"), {target: {value: username}});
@@ -72,7 +72,7 @@ describe('Login', () => {
                 password
             }
             when(axios.post)
-                .calledWith(`${BASE_URL}authentication/login`, body)
+                .calledWith(`${BASE_URL}/authentication/login`, body)
                 .mockRejectedValue();
 
             fireEvent.change(screen.queryByTestId("i-username"), {target: {value: username}});

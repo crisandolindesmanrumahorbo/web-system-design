@@ -4,7 +4,7 @@ import axios from "axios";
 const {BASE_URL} = constant;
 
 const login = async (username, password) => {
-    const url = `${BASE_URL}authentication/login`;
+    const url = `${BASE_URL}/authentication/login`;
     const body = {
         username: username,
         password: password,
@@ -14,6 +14,13 @@ const login = async (username, password) => {
     return access_token;
 }
 
+const getTodos = async () => {
+    const url = `${BASE_URL}/todo`;
+    const {data} = await axios.get(url);
+    return data;
+}
+
 export default {
-    login
+    login,
+    getTodos
 };
