@@ -1,4 +1,4 @@
-import constant from '@/pages/constant';
+import constant from '@/constant';
 import axios from 'axios';
 
 const {BASE_URL} = constant;

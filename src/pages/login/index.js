@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import service from '@/pages/service';
+import service from '@/service';
 import {useRouter} from 'next/router';
 
 export default function LoginIndexPage() {

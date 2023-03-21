@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
-import constant from '@/pages/constant';
-import service from '@/pages/service';
+import constant from '@/constant';
+import service from '@/service';
 import axios from 'axios';
 import {when} from 'jest-when';
 

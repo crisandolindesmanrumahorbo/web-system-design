@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TodoList from '@/components/TodoList';
-import service from '@/pages/service';
+import service from '@/service';
 
 export default function DashboardIndexPage({todoList}) {
   const [todos, setTodos] = useState(todoList);

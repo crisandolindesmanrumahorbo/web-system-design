@@ -5,7 +5,7 @@ import LoginIndexPage from '@/pages/login';
 import axios from 'axios';
 import {useRouter} from 'next/router';
 import {when} from 'jest-when';
-import constant from '@/pages/constant';
+import constant from '@/constant';
 import flushPromises from 'flush-promises';
 
 const {BASE_URL} = constant;
