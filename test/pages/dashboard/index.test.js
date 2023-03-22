@@ -51,4 +51,22 @@ describe('Dashboard page', () => {
       expect(status).toHaveLength(1);
     });
   });
+
+  describe('#handleAdd', function () {
+    it('should called handleAdd', async function () {
+      const {props: {todoList}} = await getServerSideProps();
+      render(<DashboardIndexPage todoList={todoList}/>);
+      const titleForm = screen.queryByTestId('form-title', {});
+      const statusForm = screen.queryByTestId('form-completed', {});
+      const buttonCreate = screen.queryByTestId('form-button', {});
+      fireEvent.change(titleForm, {target: {value: 'running'}});
+      fireEvent.click(statusForm);
+      fireEvent.click(buttonCreate);
+      await flushPromises();
+
+      const status = screen.getAllByTestId('status');
+
+      expect(status).toHaveLength(3);
+    });
+  });
 });

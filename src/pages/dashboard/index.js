@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import TodoList from '@/components/TodoList';
 import service from '@/service';
+import TodoForm from '@/components/TodoForm';
 
 export default function DashboardIndexPage({todoList}) {
   const [todos, setTodos] = useState(todoList);
@@ -10,9 +11,16 @@ export default function DashboardIndexPage({todoList}) {
     setTodos(newTodos);
   }
 
+  const handleAdd = (todo) => {
+    setTodos([...todos, todo]);
+  }
+
   return (
-    <TodoList todos={todos} handleDelete={handleDelete}/>
-  )
+    <div>
+      <TodoForm handleAdd={handleAdd}/>
+      <TodoList todos={todos} handleDelete={handleDelete}/>
+    </div>
+  );
 }
 
 export async function getServerSideProps() {
