@@ -9,6 +9,7 @@ describe('Todo', function () {
   });
 
   const deleteButton = jest.fn();
+  const editTodo = jest.fn();
   const titleContent = 'learning';
   const statusContent = 'completed';
   const todo = {
@@ -34,6 +35,15 @@ describe('Todo', function () {
       fireEvent.click(screen.queryByTestId('deleteButton'));
 
       expect(deleteButton).toHaveBeenCalled();
+    });
+  });
+
+  describe('#edit', function () {
+    it('should called editButton when button clicked', function () {
+      render(<TodoComponent todo={todo} editTodo={editTodo}/>)
+      fireEvent.click(screen.queryByTestId('editButton'));
+
+      expect(editTodo).toHaveBeenCalled();
     });
   });
 });
