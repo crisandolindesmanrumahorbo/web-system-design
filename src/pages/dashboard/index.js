@@ -5,20 +5,31 @@ import TodoForm from '@/components/TodoForm';
 
 export default function DashboardIndexPage({todoList}) {
   const [todos, setTodos] = useState(todoList);
+  const [update, setUpdate] = useState({id: Math.floor(Math.random() * 10000001), title: '', isCompleted: false});
 
   const handleDelete = (id) => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
   }
 
-  const handleAdd = (todo) => {
-    setTodos([...todos, todo]);
+  const editTodo = (todo) => {
+    setUpdate(todo);
+  }
+
+  const handleAdd = (addedTodo) => {
+    const findTodo = todos.find(todo => todo.id === addedTodo.id);
+    const filterTodo = todos.filter(todo => todo.id !== addedTodo.id);
+    if (findTodo) {
+      setTodos([...filterTodo, addedTodo]);
+    } else {
+      setTodos([...todos, addedTodo]);
+    }
   }
 
   return (
     <div>
-      <TodoForm handleAdd={handleAdd}/>
-      <TodoList todos={todos} handleDelete={handleDelete}/>
+      <TodoForm updateTodo={update} handleAdd={handleAdd}/>
+      <TodoList todos={todos} handleDelete={handleDelete} editTodo={editTodo}/>
     </div>
   );
 }

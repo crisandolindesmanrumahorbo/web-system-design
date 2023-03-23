@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo'
 
-export default function TodoListComponent({todos, handleDelete}) {
+export default function TodoListComponent({todos, handleDelete, editTodo}) {
   return (
     <div>
       <table>
@@ -18,6 +18,7 @@ export default function TodoListComponent({todos, handleDelete}) {
               key={todo.id}
               todo={todo}
               handleDelete={handleDelete}
+              editTodo={editTodo}
             />
           ))}
         </tbody>

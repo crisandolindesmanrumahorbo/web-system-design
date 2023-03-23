@@ -52,6 +52,20 @@ describe('Dashboard page', () => {
     });
   });
 
+  describe('#editTodo', function () {
+    it('should called editTodo', async function () {
+      const {props: {todoList}} = await getServerSideProps();
+      render(<DashboardIndexPage todoList={todoList}/>);
+      const editButton = screen.queryAllByTestId('editButton', {});
+
+      fireEvent.click(editButton[0]);
+      await flushPromises();
+      const titleForm = screen.queryAllByTestId('form-title', {});
+
+      expect(titleForm[0].value).toEqual(todoList[0].title);
+    });
+  });
+
   describe('#handleAdd', function () {
     it('should called handleAdd', async function () {
       const {props: {todoList}} = await getServerSideProps();
@@ -67,6 +81,27 @@ describe('Dashboard page', () => {
       const status = screen.getAllByTestId('status');
 
       expect(status).toHaveLength(3);
+    });
+
+    it('should update existing todo', async function () {
+      const {props: {todoList}} = await getServerSideProps();
+      render(<DashboardIndexPage todoList={todoList}/>);
+      const editButton = screen.queryAllByTestId('editButton', {});
+      fireEvent.click(editButton[0]);
+      const titleForm = screen.queryByTestId('form-title', {});
+      const statusForm = screen.queryByTestId('form-completed', {});
+      const buttonCreate = screen.queryByTestId('form-button', {});
+
+      fireEvent.change(titleForm, {target: {value: 'running'}});
+      fireEvent.submit(statusForm);
+      fireEvent.click(buttonCreate);
+      await flushPromises();
+      const status = screen.getAllByTestId('status');
+      const title = screen.getAllByTestId('title');
+
+      expect(status).toHaveLength(2);
+      expect(title[todoList.length - 1].textContent).toEqual('running');
+      expect(status[todoList.length - 1].textContent).toEqual('completed');
     });
   });
 });
