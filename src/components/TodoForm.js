@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 export default function TodoForm({updateTodo: {id, title, isCompleted}, handleAdd}) {
   const [idForm, setId] = useState(id);
   const [titleForm, setTitle] = useState(title);
   const [completed, setCompleted] = useState(isCompleted);
-
-  useEffect(() => {
+  const [prevTodoId, setPrevTodoId] = useState(id);
+  if (prevTodoId !== id) {
+    setPrevTodoId(id);
     setId(id);
     setTitle(title);
     setCompleted(isCompleted);
-  },[id, isCompleted, title])
+  }
 
   const _handleAdd = () => {
     handleAdd({id: idForm, title: titleForm, isCompleted: completed});
