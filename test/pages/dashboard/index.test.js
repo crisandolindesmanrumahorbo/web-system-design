@@ -28,6 +28,12 @@ describe('Dashboard page', () => {
     .mockResolvedValue({data});
 
   describe('#render', function () {
+    it('should render snapshot', async function () {
+      const {props: {todoList}} = await getServerSideProps();
+      const {baseElement} = render(<DashboardIndexPage todoList={todoList}/>);
+
+      expect(baseElement).toMatchSnapshot();
+    });
     it('should render', async () => {
       const {props: {todoList}} = await getServerSideProps();
       render(<DashboardIndexPage todoList={todoList}/>);

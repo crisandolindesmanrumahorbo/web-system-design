@@ -18,6 +18,11 @@ describe('Login', () => {
   });
 
   describe('#render', function () {
+    it('should render snapshot', async function () {
+      const {baseElement} = render(<LoginIndexPage/>);
+
+      expect(baseElement).toMatchSnapshot();
+    });
     it('should render page', () => {
       render(<LoginIndexPage/>);
       const usernameParagraph = screen.getByTestId('l-username');

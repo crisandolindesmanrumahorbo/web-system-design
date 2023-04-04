@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login #render should render snapshot 1`] = `
+<body>
+  <div>
+    <div>
+      <label
+        data-testid="l-username"
+      >
+        username
+      </label>
+      <input
+        data-testid="i-username"
+        type="text"
+      />
+      <label
+        data-testid="l-password"
+      >
+        password
+      </label>
+      <input
+        data-testid="i-password"
+        type="text"
+      />
+      <button
+        data-testid="button"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</body>
+`;
