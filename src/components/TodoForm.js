@@ -21,8 +21,8 @@ export default function TodoForm({updateTodo: {id, title, isCompleted}, handleAd
 
   return (
     <div>
-      <label>title</label>
-      <input data-testid="form-title" type="text" value={titleForm} onChange={(e) => setTitle(e.target.value)}/>
+      <label htmlFor="form-title">title</label>
+      <input id="form-title" data-testid="form-title" type="text" value={titleForm} onChange={(e) => setTitle(e.target.value)}/>
       <label htmlFor="form-completed">completed</label>
       <input data-testid="form-completed" id="form-completed" type="checkbox" checked={completed} onChange={() => setCompleted(!completed)}/>
       <button data-testid="form-button" type="submit" onClick={() => _handleAdd()}>save</button>

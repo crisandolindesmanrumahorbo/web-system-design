@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TodoForm from '@/components/TodoForm';
 import userEvent from '@testing-library/user-event';
@@ -47,6 +47,18 @@ describe('TodoForm', function () {
       fireEvent.click(screen.queryByTestId('form-button', {}));
 
       expect(handleAdd).toBeCalled();
+    });
+
+    it('should called handleAdd when user clicked button',  async function () {
+      const {user} = setup(<TodoForm updateTodo={updateTodo} handleAdd={handleAdd}/>);
+      const titleForm = screen.getByRole('textbox', {name: 'title'});
+      const statusForm = screen.getByRole('checkbox', {name: 'completed'});
+
+      user.type(titleForm, titleContent);
+      user.click(statusForm);
+      user.click(screen.getByRole('button', {name: /save/i}));
+
+      await waitFor(() => expect(handleAdd).toBeCalledTimes(1));
     });
   });
 });
