@@ -5,11 +5,14 @@ exports[`Dashboard page #render should render snapshot 1`] = `
   <div>
     <div>
       <div>
-        <label>
+        <label
+          for="form-title"
+        >
           title
         </label>
         <input
           data-testid="form-title"
+          id="form-title"
           type="text"
           value=""
         />
